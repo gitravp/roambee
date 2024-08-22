@@ -10,12 +10,12 @@ function motion(event){
 
     if(parseInt($('#bee').css('top'))>=0 && parseInt($('#bee').css('top'))<h)
     {$('#bee').css('top',String(parseInt($('#bee').css('top'))+event.beta/10)+'px')}
-    else{$('lvl-h').text('game');$('lvl-b').text('over');}
+    else{$('#lvl-h').text('game');$('#lvl-b').text('over');}
     //else{$('#bee').css('top',String(parseInt($('#bee').css('top'))%h)+'px')}
 
     if(parseInt($('#bee').css('left'))>=0 && parseInt($('#bee').css('left'))<w)
         {$('#bee').css('left',String(parseInt($('#bee').css('left'))+event.gamma/10)+'px')}
-    else{$('lvl-h').text('game');$('lvl-b').text('over');}
+    else{$('#lvl-h').text('game');$('#lvl-b').text('over');}
     //else{$('#bee').css('left',String(parseInt($('#bee').css('left'))%w)+'px')}
 
   } 
