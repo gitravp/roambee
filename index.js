@@ -1,11 +1,11 @@
-//h=window.innerHeight;
-//w=window.innerWidth;
+h=window.innerHeight;
+w=window.innerWidth;
 //h=$(window).height();
 //w=$(window).width();
 //w=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 //h=window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
-w=screen.width;
-h=screen.height;
+//w=screen.width;
+//h=screen.height;
 function motion(event){
 
     if(parseInt($('#bee').css('top'))>=0 && parseInt($('#bee').css('top'))<h)
@@ -27,8 +27,8 @@ if(window.DeviceMotionEvent){
     alert("DeviceMotionEvent is not supported");
   }
 
-  $('#bee').css('top',String(parseFloat(h)*0.7)+'px')
-  $('#bee').css('left',String(parseFloat(w)*0.5)+'px')
+  $('#bee').css('top',String(parseFloat(h)*0.8)+'px')
+  $('#bee').css('left',String(parseFloat(w)*0.8)+'px')
 
 
   /*
