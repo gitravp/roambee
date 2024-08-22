@@ -1,1 +1,33 @@
-img{height: 50px;width: 50px;position: relative;top:70px;left:70px;}
+body{background-image:url('assets/hex_pattern_erased.jpg');margin:0;}
+
+.game-head{display:grid;grid-template-columns: 4fr 2fr 1fr;background-color: #fef6d0;}
+
+.centerit{display:  flex;align-items: center;justify-content: center;}
+
+h1{
+    margin:0;grid-row: span 2;padding-left:5px;font-size: 3.5rem;
+    font-family: "Jersey 10", sans-serif;text-shadow:2px 0 #050504;
+    color:brown;background-color:#fef6d0/* #ffa708*/;
+
+}
+
+button{
+    grid-row: span 2;margin:5px;
+    font-family: "Jersey 10", sans-serif;text-shadow:2px 0 #050504;
+    color:#fef6d0;background-color:brown /*#ffc72c*/;
+    border-radius: 10%;
+    }
+
+
+h2{
+    margin:0;
+    font-family: "Jersey 10", sans-serif;text-shadow:2px 0 #050504;
+    color:brown;background-color:#fef6d0/*#ffc72c*/;
+}
+
+
+img{
+    height: 50px;width: 50px;
+    position: relative;top:70px;left:70px
+}
+
