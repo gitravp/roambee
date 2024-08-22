@@ -6,10 +6,10 @@ function motion(event){
     // );
 
     if(parseInt($('img').css('top'))>0 && parseInt($('img').css('top'))<(window.innerHeight-60))
-    {$('img').css('top',String(parseInt($('img').css('top'))-event.beta/1)+'px')}
+    {$('img').css('top',String(parseInt($('img').css('top'))-event.beta/10)+'px')}
 
     if(parseInt($('img').css('left'))>0 && parseInt($('img').css('left'))<(window.innerHeight-60))
-        {$('img').css('top',String(parseInt($('img').css('top'))-event.gamma/1)+'px')}
+        {$('img').css('top',String(parseInt($('img').css('top'))-event.gamma/10)+'px')}
 
 
   }
