@@ -4,8 +4,10 @@ body{background-image:url('assets/hex_pattern_erased.jpg');margin:0;}
 
 .centerit{display:  flex;align-items: center;justify-content: center;}
 
+.logo{grid-row: span 2;}
+
 h1{
-    margin:0;grid-row: span 2;padding-left:5px;font-size: 3.5rem;
+    margin:0;padding-left:5px;font-size: 3rem;display: inline;
     font-family: "Jersey 10", sans-serif;text-shadow:2px 0 #050504;
     color:brown;background-color:#fef6d0/* #ffa708*/;
 
@@ -26,10 +28,10 @@ h2{
 }
 
 
+
+#hive{height: 75px;width: 75px;margin-left:5px;margin-top: 5px;}
 #bee{
+    margin:0;
     height: 50px;width: 50px;
-    position: relative;top:70px;left:70px
+    position: relative;
 }
-
-#hive{height: 50px;width: 50px;}
-
