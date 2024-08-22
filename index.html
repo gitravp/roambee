@@ -7,13 +7,27 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Kalnia+Glaze:wght@100..700&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Jersey+10&family=Kalnia+Glaze:wght@100..700&family=Matemasie&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <img src="assets/transparent_bee.png">
+    <div class="game-layout">
+        <div class="game-head">
+            <h1>RoamBee</h1>
+            <div class="centerit"><h2 id="lvl-h">Level</h2></div>
+            <button>START</button>
+            <div class="centerit"><h2 id="lvl-b">1</h2></div>
+            
+            
+        </div>
+            
+            <div class="game-area"></div>
+            
+    </div>
+    
+    <img src="assets/transparent_bee.png" id="bee">
+    <img src="assets/hive.png" id="hive">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="index.js"></script>
 </body>
