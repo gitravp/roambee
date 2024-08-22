@@ -5,17 +5,17 @@ function motion(event){
     //    + event.gamma
     // );
     /*
-    if(parseInt($('img').css('top'))>0 && parseInt($('img').css('top'))<(window.innerHeight-60))
-    {$('img').css('top',String(parseInt($('img').css('top'))+event.beta/10)+'px')}
-    else{$('img').css('top','1px')}
+    if(parseInt($('#bee').css('top'))>0 && parseInt($('#bee').css('top'))<(window.innerHeight-60))
+    {$('#bee').css('top',String(parseInt($('#bee').css('top'))+event.beta/10)+'px')}
+    else{$('#bee').css('top','1px')}
 
-    if(parseInt($('img').css('left'))>0 && parseInt($('img').css('left'))<(window.innerWidth-60))
-        {$('img').css('left',String(parseInt($('img').css('left'))+event.gamma/10)+'px')}
-    else{$('img').css('left','1px')}
+    if(parseInt($('#bee').css('left'))>0 && parseInt($('#bee').css('left'))<(window.innerWidth-60))
+        {$('#bee').css('left',String(parseInt($('#bee').css('left'))+event.gamma/10)+'px')}
+    else{$('#bee').css('left','1px')}
     */
-    if(parseInt($('img').css('top'))>=0 && parseInt($('img').css('top'))<(window.innerHeight))
-    {$('img').css('top',String(parseInt($('img').css('top'))+event.beta/10)+'px')}
-    else{$('img').css('top',String(parseInt($('img').css('top'))%(window.innerHeight))+'px')}
+    if(parseInt($('#bee').css('top'))>=0 && parseInt($('#bee').css('top'))<(window.innerHeight))
+    {$('#bee').css('top',String(parseInt($('#bee').css('top'))+event.beta/10)+'px')}
+    else{$('#bee').css('top',String(parseInt($('#bee').css('top'))%(window.innerHeight))+'px')}
 
     if(parseInt($('img').css('left'))>=0 && parseInt($('img').css('left'))<(window.innerWidth))
         {$('img').css('left',String(parseInt($('img').css('left'))+event.gamma/10)+'px')}
