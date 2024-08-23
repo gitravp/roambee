@@ -1,4 +1,4 @@
-h=window.innerHeight;
+h=window.innerHeight-50;
 w=window.innerWidth;
 //h=$(window).height();
 //w=$(window).width();
@@ -8,12 +8,12 @@ w=window.innerWidth;
 //h=screen.height;
 function motion(event){
 
-    if(parseInt($('#bee').css('top'))>=0 && parseInt($('#bee').css('top'))<h)
+    if(parseInt($('#bee').css('top'))>=0 && parseInt($('#bee').css('top'))<(h-50))
     {$('#bee').css('top',String(parseInt($('#bee').css('top'))+event.beta/10)+'px')}
     else{$('#lvl-h').text('game');$('#lvl-b').text('over');}
     //else{$('#bee').css('top',String(parseInt($('#bee').css('top'))%h)+'px')}
 
-    if(parseInt($('#bee').css('left'))>=0 && parseInt($('#bee').css('left'))<w)
+    if(parseInt($('#bee').css('left'))>=0 && parseInt($('#bee').css('left'))<(w-50))
         {$('#bee').css('left',String(parseInt($('#bee').css('left'))+event.gamma/10)+'px')}
     else{$('#lvl-h').text('game');$('#lvl-b').text('over');}
     //else{$('#bee').css('left',String(parseInt($('#bee').css('left'))%w)+'px')}
