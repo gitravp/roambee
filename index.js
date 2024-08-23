@@ -1,7 +1,9 @@
 var img_sz=50;    //length and height of bee to set offset in top and left positioning
 var head_sz=50;    //Nav bar heading height, to adjust available space on screen for game
-var h=window.innerHeight;
+var h=window.innerHeight-head_sz;
 var w=window.innerWidth;
+var tp='top';
+var lft='left';
 //h=$(window).height();
 //w=$(window).width();
 //w=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -9,22 +11,22 @@ var w=window.innerWidth;
 //w=screen.width;
 //h=screen.height;
 
-h=h-head_sz;    //available space for game after excluding nav bar
-
-$('#bee').css('top',String(parseInt(h-100))+'px')    //initialise bee position Y axis
-$('#bee').css('left',String(parseInt(w-100))+'px')    //initialise bee position X axis
+//$('#bee').css(tp,String(parseInt(h-100))+'px')    //initialise bee position Y axis
+//$('#bee').css(lft,String(parseInt(w-100))+'px')    //initialise bee position X axis
+$('#bee').css(tp,String(parseInt(h-50))+'px')    //initialise bee position Y axis
+$('#bee').css(lft,String(parseInt(w-50))+'px')    //initialise bee position X axis
 
 //----------------------------Bee motion based on Gyroscope-----------------------------------------------------
 
 //x and y axis value adjuster
 function motion(event){
-    if(parseInt($('#bee').css('top'))>0 && parseInt($('#bee').css('top'))<(h-img_sz))
-    {$('#bee').css('top',String(parseInt($('#bee').css('top'))+event.beta/10)+'px')}
+    if(parseInt($('#bee').css(top))>0 && parseInt($('#bee').css(tp))<(h-img_sz))
+    {$('#bee').css(tp,String(parseInt($('#bee').css(tp))+event.beta/10)+'px')}
     else{game_over();}
     //else{$('#bee').css('top',String(parseInt($('#bee').css('top'))%h)+'px')}
 
-    if(parseInt($('#bee').css('left'))>0 && parseInt($('#bee').css('left'))<(w-img_sz))
-        {$('#bee').css('left',String(parseInt($('#bee').css('left'))+event.gamma/10)+'px')}
+    if(parseInt($('#bee').css(lft))>0 && parseInt($('#bee').css(lft))<(w-img_sz))
+        {$('#bee').css(lft,String(parseInt($('#bee').css(lft))+event.gamma/10)+'px')}
     else{game_over();}
     //else{$('#bee').css('left',String(parseInt($('#bee').css('left'))%w)+'px')}
   }
