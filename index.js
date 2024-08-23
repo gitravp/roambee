@@ -13,8 +13,8 @@ var lft='left';
 
 //$('#bee').css(tp,String(parseInt(h-100))+'px')    //initialise bee position Y axis
 //$('#bee').css(lft,String(parseInt(w-100))+'px')    //initialise bee position X axis
-$('#bee').css(tp,String(parseInt(h-50))+'px')    //initialise bee position Y axis
-$('#bee').css(lft,String(parseInt(w-50))+'px')    //initialise bee position X axis
+$('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
+$('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
 
 //----------------------------Bee motion based on Gyroscope-----------------------------------------------------
 
