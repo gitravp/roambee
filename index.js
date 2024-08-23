@@ -4,17 +4,8 @@ var h=window.innerHeight-head_sz;
 var w=window.innerWidth;
 var tp='top';
 var lft='left';
-//h=$(window).height();
-//w=$(window).width();
-//w=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-//h=window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
-//w=screen.width;
-//h=screen.height;
 
-//$('#bee').css(tp,String(parseInt(h-100))+'px')    //initialise bee position Y axis
-//$('#bee').css(lft,String(parseInt(w-100))+'px')    //initialise bee position X axis
-$('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
-$('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
+var lvl=1;
 
 //----------------------------Bee motion based on Gyroscope-----------------------------------------------------
 
@@ -22,13 +13,19 @@ $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X ax
 function motion(event){
     if(parseInt($('#bee').css(tp))>0 && parseInt($('#bee').css(tp))<(h-img_sz))
     {$('#bee').css(tp,String(parseInt($('#bee').css(tp))+event.beta/10)+'px')}
-    else{game_over();}
-    //else{$('#bee').css('top',String(parseInt($('#bee').css('top'))%h)+'px')}
 
     if(parseInt($('#bee').css(lft))>0 && parseInt($('#bee').css(lft))<(w-img_sz))
-        {$('#bee').css(lft,String(parseInt($('#bee').css(lft))+event.gamma/10)+'px')}
-    else{game_over();}
-    //else{$('#bee').css('left',String(parseInt($('#bee').css('left'))%w)+'px')}
+      {$('#bee').css(lft,String(parseInt($('#bee').css(lft))+event.gamma/10)+'px')}
+
+    if(parseInt($('#bee').css(tp))<=0 ||
+     parseInt($('#bee').css(tp))>=(h-img_sz)||
+     parseInt($('#bee').css(lft))<=0 ||
+     parseInt($('#bee').css(lft))>=(w-img_sz)){
+      game_over();
+     }
+
+    if(parseInt($('#bee').css(tp))<hive_x && parseInt($('#bee').css(lft))<hive_y){level_up();}
+
   }
 
 //Gyroscope event listener and support check
@@ -43,9 +40,29 @@ else{
 
 function game_over(){
     $('#lvl-h').text('game');$('#lvl-b').text('over');
+    return(1);
 }
 
+function restart(){
+  $('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
+  $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
+  lvl=1;
+  $('#lvl-h').text("LEVEL");
+  $('#lvl-b').text(String(lvl));
+}
+
+function level_up(){
+  $('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
+  $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
+  lvl+=1;
+  $('#lvl-b').text(String(lvl));
+}
+
+
+
 //-------------------------------------------------------------------------------------------------------------
+$('#restart-button').click(function(){restart();});
+
 /*
   function button_control(n){
     if(n==38||n==87){
@@ -110,3 +127,10 @@ if(window.DeviceMotionEvent){
         {$('img').css('left',String(parseInt($('img').css('left'))+event.gamma/10)+'px')}
     else{$('img').css('left','1px')}
     */
+
+//h=$(window).height();
+//w=$(window).width();
+//w=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+//h=window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
+//w=screen.width;
+//h=screen.height;
