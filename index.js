@@ -6,31 +6,62 @@ var tp='top';
 var lft='left';
 var hive_x=25;
 var hive_y=25;
-
 var lvl=1;
+strt=0;
+
+var obstacles=[];
 
 //----------------------------Bee motion based on Gyroscope-----------------------------------------------------
 
 //x and y axis value adjuster
 function motion(event){
-    if(parseInt($('#bee').css(tp))>0 && parseInt($('#bee').css(tp))<(h-img_sz))
-    {$('#bee').css(tp,String(parseInt($('#bee').css(tp))+event.beta/10)+'px')}
+  if(strt==1)
+    {
+      if(parseInt($('#bee').css(tp))>0 && parseInt($('#bee').css(tp))<(h-img_sz))
+      {$('#bee').css(tp,String(parseInt($('#bee').css(tp))+event.beta/10)+'px')}
 
-    if(parseInt($('#bee').css(lft))>0 && parseInt($('#bee').css(lft))<(w-img_sz))
-      {$('#bee').css(lft,String(parseInt($('#bee').css(lft))+event.gamma/10)+'px')}
+      if(parseInt($('#bee').css(lft))>0 && parseInt($('#bee').css(lft))<(w-img_sz))
+        {$('#bee').css(lft,String(parseInt($('#bee').css(lft))+event.gamma/10)+'px')}
 
-    if(parseInt($('#bee').css(tp))<=0 ||
-     parseInt($('#bee').css(tp))>=(h-img_sz)||
-     parseInt($('#bee').css(lft))<=0 ||
-     parseInt($('#bee').css(lft))>=(w-img_sz)){
-      game_over();
-     }
+      if(parseInt($('#bee').css(tp))<=0 ||
+      parseInt($('#bee').css(tp))>=(h-img_sz)||
+      parseInt($('#bee').css(lft))<=0 ||
+      parseInt($('#bee').css(lft))>=(w-img_sz)){
+        game_over();
+      }
 
-    if(parseInt($('#bee').css(tp))<hive_x && parseInt($('#bee').css(lft))<hive_y){level_up();}
-
+      if(parseInt($('#bee').css(tp))<hive_x && parseInt($('#bee').css(lft))<hive_y){level_up();}
+    }
   }
 
+//------------------------------------------Game over and restart----------------------------------------------
+function game_over(){
+  $('#lvl-h').text('game');$('#lvl-b').text('over');
+  strt=0;
+  return(1);
+}
+
+function restart(){
+$('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
+$('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
+lvl=1;
+$('#lvl-h').text("LEVEL");
+$('#lvl-b').text(String(lvl));
+strt=1;
+}
+
+function level_up(){
+$('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
+$('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
+lvl+=1;
+$('#lvl-b').text(String(lvl));
+}
+$('#restart-button').click(function(){restart();});
+
+//-------------------------------------------------------------------------------------------------------------
+
 //Gyroscope event listener and support check
+
 if(window.DeviceMotionEvent){
     window.addEventListener("deviceorientation", motion, false);
   }
@@ -40,30 +71,7 @@ else{
 
 //-------------------------------------------------------------------------------------------------------------
 
-function game_over(){
-    $('#lvl-h').text('game');$('#lvl-b').text('over');
-    return(1);
-}
 
-function restart(){
-  $('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
-  $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
-  lvl=1;
-  $('#lvl-h').text("LEVEL");
-  $('#lvl-b').text(String(lvl));
-}
-
-function level_up(){
-  $('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
-  $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
-  lvl+=1;
-  $('#lvl-b').text(String(lvl));
-}
-
-
-
-//-------------------------------------------------------------------------------------------------------------
-$('#restart-button').click(function(){restart();});
 
 /*
   function button_control(n){
