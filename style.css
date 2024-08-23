@@ -1,6 +1,6 @@
 body{background-image:url('assets/hex_pattern_erased.jpg');margin:0;}
 
-.game-head{display:grid;grid-template-columns: 4fr 2fr 1fr;background-color: #fef6d0;}
+.game-head{margin:0;display:grid;grid-template-columns: 4fr 2fr 1fr;background-color: #fef6d0;height:50px;}
 
 .centerit{display:  flex;align-items: center;justify-content: center;}
 
