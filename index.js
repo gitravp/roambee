@@ -20,7 +20,7 @@ $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X ax
 
 //x and y axis value adjuster
 function motion(event){
-    if(parseInt($('#bee').css(top))>0 && parseInt($('#bee').css(tp))<(h-img_sz))
+    if(parseInt($('#bee').css(tp))>0 && parseInt($('#bee').css(tp))<(h-img_sz))
     {$('#bee').css(tp,String(parseInt($('#bee').css(tp))+event.beta/10)+'px')}
     else{game_over();}
     //else{$('#bee').css('top',String(parseInt($('#bee').css('top'))%h)+'px')}
