@@ -113,6 +113,8 @@ $('#restart-button').click(function(){restart();});
 
 //Gyroscope event listener and support check
 
+setInterval(() => {document.dispatchEvent("deviceorientation");}, 50);
+
 if(window.DeviceMotionEvent){
     window.addEventListener("deviceorientation", motion, false);
   }
