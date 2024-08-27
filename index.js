@@ -16,11 +16,14 @@ var r=h-hive_sz-img_sz-10; //total row space or height available (10 is initial 
 var c=w;    //total column sspace or width available
 var no_of_rows=5;    //total rows of obstacles
 var no_of_cols=3;    //total columns of obstacles
-var obs_height=r/5;
-var obs_width=c/5;
+var obs_height=r/no_of_rows;
+var obs_width=c/no_of_cols;
 
-//--------------------------------Generate Obstacles-----------------------------------------------------------
+//----------------------------Generate,Display Obstacles and Check collision------------------------------------
+//generate obstacles list based on level
 function obstacle_gen(){
+  obstacles=[];
+  lvl_obstacles=[];
   offset_top=hive_sz;
   offset_left=0;
 
@@ -34,20 +37,31 @@ function obstacle_gen(){
       obstacles.push([r1+offset_top,c1+offset_left]);
     }
   }
-  lvl_obstacles=obstacles;
-//alert(obstacles);
+
 }
 
+//Select an additional object each level up
+function obstacle_selector(){
+  rand_no=Math.floor(Math.random()*obstacles.length);
+  temp=obstacles[rand_no];
+  delete obstacles[rand_no];
+  lvl_obstacles.push(temp);
+
+}
+
+//Remove old obstacles, display new ones
 function obstacle_display(){
-  for(i=0;i<obstacles.length;i++){
+  $('img.obs').remove();
+  for(i=0;i<lvl_obstacles.length;i++){
     s="<img src='assets/hole.png' class='obs' "+"style='position: absolute;z-index: -1;margin-left:"
-    +String(obstacles[i][1])+"px;margin-top: "+String(obstacles[i][0])+"px;"+
+    +String(lvl_obstacles[i][1])+"px;margin-top: "+String(lvl_obstacles[i][0])+"px;"+
     "height:"+String(obs_height)+"px;width:"+String(obs_width)+"px;'>";
     $('div#obstacle-arena').append(s); 
 
   }
 }
 
+//check for collision of bee with an obstacle
 function obstacle_collision(bee_tp,bee_lf){
   detection_margin=0.4;
   for(i=0;i<lvl_obstacles.length;i++){
@@ -99,6 +113,10 @@ lvl=1;
 $('#lvl-h').text("LEVEL");
 $('#lvl-b').text(String(lvl));
 strt=1;
+//If restarted, generate obstacles b4 selection and display
+obstacle_gen();
+obstacle_selector();
+obstacle_display();
 }
 
 function level_up(){
@@ -106,13 +124,16 @@ $('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axi
 $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
 lvl+=1;
 $('#lvl-b').text(String(lvl));
+//if regular level up, just select obstacles from generated list and display
+obstacle_selector();
+obstacle_display();
+
 }
 $('#restart-button').click(function(){restart();});
 
 //-------------------------------------------------------------------------------------------------------------
 
 //Gyroscope event listener and support check
-
 //setInterval(() => {document.dispatchEvent("deviceorientation");}, 50);
 
 if(window.DeviceMotionEvent){
@@ -123,8 +144,8 @@ else{
   }
 
 //-------------------------------------------------------------------------------------------------------------
-obstacle_gen();
-obstacle_display();
+
+
 
 
 /*
