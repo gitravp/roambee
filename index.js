@@ -18,11 +18,13 @@ var no_of_cols=3;    //total columns of obstacles
 
 //--------------------------------Generate Obstacles-----------------------------------------------------------
 function obstacle_gen(){
-  
   for(i=0;i<no_of_rows;i++){
     for(j=0;j<no_of_cols;j++){
       r1=i*r/no_of_rows;
-      c1=j*c/no_of_cols;
+      if(i%2==0)    //staggered columns in alternate rows rathar than 100% aligned columns
+      {c1=j*c/no_of_cols;}
+      else
+      {c1=(j*c/no_of_cols)+c/(no_of_cols*2);}
       obstacles.push([r1,c1]);
     }
   }
