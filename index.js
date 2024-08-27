@@ -10,14 +10,20 @@ var hive_y=25;
 var lvl=1;
 strt=0;
 
-var obstacles=[];    //array to store obstacles
+var obstacles=[];    //array to store all possible obstacles
+var lvl_obstacles=[];    //selected  obstacles based on level
 var r=h-hive_sz-img_sz-10; //total row space or height available (10 is initial bee offset)
 var c=w;    //total column sspace or width available
 var no_of_rows=5;    //total rows of obstacles
 var no_of_cols=3;    //total columns of obstacles
+var obs_height=r/5;
+var obs_width=c/5;
 
 //--------------------------------Generate Obstacles-----------------------------------------------------------
 function obstacle_gen(){
+  offset_top=hive_sz;
+  offset_left=0;
+
   for(i=0;i<no_of_rows;i++){
     for(j=0;j<no_of_cols;j++){
       r1=i*r/no_of_rows;
@@ -25,22 +31,31 @@ function obstacle_gen(){
       {c1=j*c/no_of_cols;}
       else
       {c1=(j*c/no_of_cols)+c/(no_of_cols*2);}
-      obstacles.push([r1,c1]);
+      obstacles.push([r1+offset_top,c1+offset_left]);
     }
   }
+  lvl_obstacles=obstacles;
 //alert(obstacles);
 }
 
 function obstacle_display(){
-  offset_top=hive_sz;
-  offset_left=0;
   for(i=0;i<obstacles.length;i++){
     s="<img src='assets/hole.png' class='obs' "+"style='position: absolute;z-index: -1;margin-left:"
-    +String(obstacles[i][1]+offset_left)+"px;margin-top: "+String(obstacles[i][0]+offset_top)+"px;"+
-    "height:"+String(r/5)+"px;width:"+String(c/5)+"px;'>";
+    +String(obstacles[i][1])+"px;margin-top: "+String(obstacles[i][0])+"px;"+
+    "height:"+String(obs_height)+"px;width:"+String(obs_width)+"px;'>";
     $('div#obstacle-arena').append(s); 
 
   }
+}
+
+function obstacle_collision(bee_tp,bee_lf){
+  for(i=0;i<lvl_obstacles;i++){
+    if(bee_tp>=lvl_obstacles[i][0] && bee_tp<=lvl_obstacles[i][0]+obs_height && 
+       bee_lf>=lvl_obstacles[i][1] && bee_lf<=lvl_obstacles[i][1]+obs_width){
+      return true;
+    }
+  }
+  return(false);
 }
 
 //----------------------------Bee motion based on Gyroscope-----------------------------------------------------
@@ -58,7 +73,8 @@ function motion(event){
       if(parseInt($('#bee').css(tp))<=0 ||
       parseInt($('#bee').css(tp))>=(h-img_sz)||
       parseInt($('#bee').css(lft))<=0 ||
-      parseInt($('#bee').css(lft))>=(w-img_sz)){
+      parseInt($('#bee').css(lft))>=(w-img_sz) || 
+      obstacle_collision(parseInt($('#bee').css(tp)),parseInt($('#bee').css(lft)))){
         game_over();
       }
 
