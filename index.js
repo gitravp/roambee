@@ -22,7 +22,7 @@ function obstacle_gen(){
   for(i=0;i<no_of_rows;i++){
     for(j=0;j<no_of_cols;j++){
       r1=i*r/no_of_rows;
-      c1=j*c/(no_of_cols-1);
+      c1=j*c/no_of_cols;
       obstacles.push([r1,c1]);
     }
   }
