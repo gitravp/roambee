@@ -49,7 +49,7 @@ function obstacle_display(){
 }
 
 function obstacle_collision(bee_tp,bee_lf){
-  for(i=0;i<lvl_obstacles;i++){
+  for(i=0;i<lvl_obstacles.length;i++){
     if(bee_tp>=lvl_obstacles[i][0] && bee_tp<=lvl_obstacles[i][0]+obs_height && 
        bee_lf>=lvl_obstacles[i][1] && bee_lf<=lvl_obstacles[i][1]+obs_width){
       return true;
