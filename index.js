@@ -5,8 +5,8 @@ var h=window.innerHeight-head_sz;
 var w=window.innerWidth;
 var tp='top';
 var lft='left';
-var hive_x=25;
-var hive_y=25;
+var hive_x=35;
+var hive_y=35;
 var lvl=1;
 strt=0;
 
