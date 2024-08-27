@@ -1,4 +1,5 @@
 var img_sz=50;    //length and height of bee to set offset in top and left positioning
+var hive_sz=75;    //length and height of hive to set offset in top and left positioning for obstacles
 var head_sz=50;    //Nav bar heading height, to adjust available space on screen for game
 var h=window.innerHeight-head_sz;
 var w=window.innerWidth;
@@ -9,7 +10,36 @@ var hive_y=25;
 var lvl=1;
 strt=0;
 
-var obstacles=[];
+var obstacles=[];    //array to store obstacles
+var r=h-hive_sz-img_sz-10; //total row space or height available (10 is initial bee offset)
+var c=w;    //total column sspace or width available
+var no_of_rows=5;    //total rows of obstacles
+var no_of_cols=3;    //total columns of obstacles
+
+//--------------------------------Generate Obstacles-----------------------------------------------------------
+function obstacle_gen(){
+  
+  for(i=0;i<no_of_rows;i++){
+    for(j=0;j<no_of_cols;j++){
+      r1=i*r/no_of_rows;
+      c1=j*c/(no_of_cols-1);
+      obstacles.push([r1,c1]);
+    }
+  }
+//alert(obstacles);
+}
+
+function obstacle_display(){
+  offset_top=hive_sz;
+  offset_left=0;
+  for(i=0;i<obstacles.length;i++){
+    s="<img src='assets/hole.png' class='obs' "+"style='position: absolute;z-index: -1;margin-left:"
+    +String(obstacles[i][1]+offset_left)+"px;margin-top: "+String(obstacles[i][0]+offset_top)+"px;"+
+    "height:"+String(r/5)+"px;width:"+String(c/5)+"px;'>";
+    $('div#obstacle-arena').append(s); 
+
+  }
+}
 
 //----------------------------Bee motion based on Gyroscope-----------------------------------------------------
 
@@ -70,7 +100,8 @@ else{
   }
 
 //-------------------------------------------------------------------------------------------------------------
-
+obstacle_gen();
+obstacle_display();
 
 
 /*
