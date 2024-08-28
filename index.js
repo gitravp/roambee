@@ -47,6 +47,7 @@ async function obstacle_selector(){
   {
   let rand_no=obstacles.length==1?0:Math.floor(Math.random()*obstacles.length);
   let temp=obstacles[rand_no];
+  alert(rand_no+"-"+temp);
   delete obstacles[rand_no];
   lvl_obstacles.push(temp);
   }
