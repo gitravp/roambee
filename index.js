@@ -45,10 +45,11 @@ async function obstacle_gen(){
 async function obstacle_selector(){
   while(lvl_obstacles.length<lvl)
   {
-  let rand_no=obstacles.length==1?0:Math.floor(Math.random()*obstacles.length);
-  let temp=obstacles[rand_no];
-  alert(rand_no+"-"+temp);
-  delete obstacles[rand_no];
+  //let rand_no=obstacles.length==1?0:Math.floor(Math.random()*obstacles.length);
+  //let temp=obstacles[rand_no];
+  //alert(rand_no+"-"+temp);
+  //delete obstacles[rand_no];
+  let temp=obstacles.splice(rand_no,1);
   lvl_obstacles.push(temp);
   }
   //return(obstacle_display());
@@ -147,9 +148,9 @@ if(lvl>no_of_cols*no_of_rows){
   const p4=await obstacle_gen();
 }
 const p5=await obstacle_selector();
-alert("sel_sucess"+lvl_obstacles);
+//alert("sel_sucess"+lvl_obstacles);
 const p6=await obstacle_display();
-alert("disp_sucess");
+//alert("disp_sucess");
 doing_something=0;
 }
 
