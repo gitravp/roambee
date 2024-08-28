@@ -146,7 +146,7 @@ if(lvl>no_of_cols*no_of_rows){
   const p4=await obstacle_gen();
 }
 const p5=await obstacle_selector();
-alert("sel_sucess",lvl_obstacles[-1]);
+alert("sel_sucess"+lvl_obstacles);
 const p6=await obstacle_display();
 alert("disp_sucess");
 doing_something=0;
