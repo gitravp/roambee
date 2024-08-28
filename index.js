@@ -87,15 +87,14 @@ function motion(event){
       if(parseInt($('#bee').css(lft))>0 && parseInt($('#bee').css(lft))<(w-img_sz))
         {$('#bee').css(lft,String(parseInt($('#bee').css(lft))+event.gamma/10)+'px')}
 
-      if(parseInt($('#bee').css(tp))<=0 ||
+      if(parseInt($('#bee').css(tp))<hive_x && parseInt($('#bee').css(lft))<hive_y){return(level_up());}
+      else if(parseInt($('#bee').css(tp))<=0 ||
       parseInt($('#bee').css(tp))>=(h-img_sz)||
       parseInt($('#bee').css(lft))<=0 ||
       parseInt($('#bee').css(lft))>=(w-img_sz) || 
       obstacle_collision(parseInt($('#bee').css(tp)),parseInt($('#bee').css(lft)))){
-        game_over();
-      }
-
-      else if(parseInt($('#bee').css(tp))<hive_x && parseInt($('#bee').css(lft))<hive_y){level_up();}
+      return(game_over());
+      }      
       else{}
     }
   }
