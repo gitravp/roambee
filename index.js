@@ -13,7 +13,7 @@ strt=0;
 var obstacles=[];    //array to store all possible obstacles
 var lvl_obstacles=[];    //selected  obstacles based on level
 var r=h-hive_sz-img_sz-10; //total row space or height available (10 is initial bee offset)
-var c=w;    //total column sspace or width available
+var c=w;    //total column space or width available
 var no_of_rows=1;    //total rows of obstacles
 var no_of_cols=1;    //total columns of obstacles
 var obs_height=r/no_of_rows;
@@ -44,11 +44,12 @@ function obstacle_gen(){
 function obstacle_selector(){
   while(lvl_obstacles.length<lvl)
   {
-  rand_no=Math.floor(Math.random()*obstacles.length);
+  rand_no=obstacles.length==1?0:Math.floor(Math.random()*obstacles.length);
   temp=obstacles[rand_no];
   delete obstacles[rand_no];
   lvl_obstacles.push(temp);
   }
+  return(obstacle_display());
 }
 
 //Remove old obstacles, display new ones
@@ -125,7 +126,7 @@ obs_height=r/no_of_rows;
 obs_width=c/no_of_cols;
 obstacle_gen();
 obstacle_selector();
-obstacle_display();
+//obstacle_display();
 }
 
 function level_up(){
@@ -142,7 +143,7 @@ if(lvl>no_of_cols*no_of_rows){
   obstacle_gen();
 }
 obstacle_selector();
-obstacle_display();
+//obstacle_display();
 }
 $('#restart-button').click(function(){restart();});
 
