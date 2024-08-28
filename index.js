@@ -42,7 +42,7 @@ function obstacle_gen(){
 
 //Select an additional object each level up
 function obstacle_selector(){
-  for(i=lvl_obstacles.length;i<lvl;i++)
+  while(lvl_obstacles.length<lvl)
   {
   rand_no=Math.floor(Math.random()*obstacles.length);
   temp=obstacles[rand_no];
