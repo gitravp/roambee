@@ -8,7 +8,8 @@ var lft='left';
 var hive_x=35;
 var hive_y=35;
 var lvl=1;
-strt=0;
+var strt=0;
+var doing_something=0;
 
 var obstacles=[];    //array to store all possible obstacles
 var lvl_obstacles=[];    //selected  obstacles based on level
@@ -21,7 +22,7 @@ var obs_width=c/no_of_cols;
 
 //----------------------------Generate,Display Obstacles and Check collision------------------------------------
 //generate obstacles list based on level
-function obstacle_gen(){
+async function obstacle_gen(){
   obstacles=[];
   lvl_obstacles=[];
   var offset_top=hive_sz;
@@ -41,19 +42,19 @@ function obstacle_gen(){
 }
 
 //Select an additional object each level up
-function obstacle_selector(){
+async function obstacle_selector(){
   while(lvl_obstacles.length<lvl)
   {
-  rand_no=obstacles.length==1?0:Math.floor(Math.random()*obstacles.length);
-  temp=obstacles[rand_no];
+  let rand_no=obstacles.length==1?0:Math.floor(Math.random()*obstacles.length);
+  let temp=obstacles[rand_no];
   delete obstacles[rand_no];
   lvl_obstacles.push(temp);
   }
-  return(obstacle_display());
+  //return(obstacle_display());
 }
 
 //Remove old obstacles, display new ones
-function obstacle_display(){
+async function obstacle_display(){
   $('img.obs').remove();
   for(i=0;i<lvl_obstacles.length;i++){
     s="<img src='assets/hole.png' class='obs' "+
@@ -61,13 +62,12 @@ function obstacle_display(){
     "px;margin-top: "+String(lvl_obstacles[i][0])+
     "px; height:"+String(obs_height)+
     "px;width:"+String(obs_width)+"px;'>";
-
     $('div#obstacle-arena').append(s); 
   }
 }
 
 //check for collision of bee with an obstacle
-function obstacle_collision(bee_tp,bee_lf){
+async function obstacle_collision(bee_tp,bee_lf){
   detection_margin=0.4;
   for(i=0;i<lvl_obstacles.length;i++){
     if(bee_tp+img_sz>=(lvl_obstacles[i][0]+detection_margin*obs_height) && 
@@ -84,7 +84,7 @@ function obstacle_collision(bee_tp,bee_lf){
 
 //x and y axis value adjuster
 function motion(event){
-  if(strt==1)
+  if(strt==1 && doing_something==0)
     {
       if(parseInt($('#bee').css(tp))>0 && parseInt($('#bee').css(tp))<(h-img_sz))
       {$('#bee').css(tp,String(parseInt($('#bee').css(tp))+event.beta/10)+'px')}
@@ -112,7 +112,8 @@ function game_over(){
   return(1);
 }
 
-function restart(){
+async function restart(){
+doing_something=1;
 $('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
 $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
 lvl=1;
@@ -124,12 +125,14 @@ no_of_rows=1;    //total rows of obstacles
 no_of_cols=1;    //total columns of obstacles
 obs_height=r/no_of_rows;
 obs_width=c/no_of_cols;
-obstacle_gen();
-obstacle_selector();
-//obstacle_display();
+const p1= await obstacle_gen();
+const p2=await obstacle_selector();
+const p3=await obstacle_display();
+doing_something=0;
 }
 
-function level_up(){
+async function level_up(){
+doing_something=1;
 $('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
 $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
 lvl+=1;
@@ -140,11 +143,13 @@ if(lvl>no_of_cols*no_of_rows){
   no_of_rows+=1;
   obs_height=r/no_of_rows;
   obs_width=c/no_of_cols;
-  obstacle_gen();
+  const p4=await obstacle_gen();
 }
-obstacle_selector();
-//obstacle_display();
+const p5=await obstacle_selector();
+const p6=await obstacle_display();
+doing_something=0;
 }
+
 $('#restart-button').click(function(){restart();});
 
 //-------------------------------------------------------------------------------------------------------------
