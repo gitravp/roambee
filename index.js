@@ -59,7 +59,7 @@ async function obstacle_selector(){
 async function obstacle_display(){
   $('img.obs').remove();
   for(k=0;k<lvl_obstacles.length;k++){
-    alert(String(lvl_obstacles[k][0])+",abc,"+String(lvl_obstacles[k][1]));
+    alert(String(lvl_obstacles[k][0][0])+",abc,"+String(lvl_obstacles[k][0][1]));
     let s="<img src='assets/hole.png' class='obs' "+
     "style='position: absolute;z-index: -1;margin-left:"+String(lvl_obstacles[k][1])+
     "px;margin-top: "+String(lvl_obstacles[k][0])+
