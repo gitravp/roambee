@@ -73,10 +73,10 @@ async function obstacle_display(){
 function obstacle_collision(bee_tp,bee_lf){
   detection_margin=0.4;
   for(i=0;i<lvl_obstacles.length;i++){
-    if(bee_tp+img_sz>=(lvl_obstacles[i][0]+detection_margin*obs_height) && 
-       bee_tp<=(lvl_obstacles[i][0]+obs_height-detection_margin*obs_height )&& 
-       bee_lf+img_sz>=(lvl_obstacles[i][1]+detection_margin*obs_width )&& 
-       bee_lf<=(lvl_obstacles[i][1]+obs_width-detection_margin*obs_width)){
+    if(bee_tp+img_sz>=(lvl_obstacles[i][0][0]+detection_margin*obs_height) && 
+       bee_tp<=(lvl_obstacles[i][0][0]+obs_height-detection_margin*obs_height )&& 
+       bee_lf+img_sz>=(lvl_obstacles[i][0][1]+detection_margin*obs_width )&& 
+       bee_lf<=(lvl_obstacles[i][0][1]+obs_width-detection_margin*obs_width)){
       return true;
     }
   }
