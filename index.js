@@ -14,8 +14,8 @@ var obstacles=[];    //array to store all possible obstacles
 var lvl_obstacles=[];    //selected  obstacles based on level
 var r=h-hive_sz-img_sz-10; //total row space or height available (10 is initial bee offset)
 var c=w;    //total column sspace or width available
-var no_of_rows=5;    //total rows of obstacles
-var no_of_cols=3;    //total columns of obstacles
+var no_of_rows=1;    //total rows of obstacles
+var no_of_cols=1;    //total columns of obstacles
 var obs_height=r/no_of_rows;
 var obs_width=c/no_of_cols;
 
@@ -117,6 +117,10 @@ $('#lvl-h').text("LEVEL");
 $('#lvl-b').text(String(lvl));
 strt=1;
 //If restarted, generate obstacles b4 selection and display
+no_of_rows=1;    //total rows of obstacles
+no_of_cols=1;    //total columns of obstacles
+obs_height=r/no_of_rows;
+obs_width=c/no_of_cols;
 obstacle_gen();
 obstacle_selector();
 obstacle_display();
@@ -128,9 +132,14 @@ $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X ax
 lvl+=1;
 $('#lvl-b').text(String(lvl));
 //if regular level up, just select obstacles from generated list and display
+if(lvl>no_of_cols*no_of_rows){
+  no_of_cols+=1;
+  no_of_rows+=1;
+  obs_height=r/no_of_rows;
+  obs_width=c/no_of_cols;
+}
 obstacle_selector();
 obstacle_display();
-
 }
 $('#restart-button').click(function(){restart();});
 
