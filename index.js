@@ -56,7 +56,7 @@ async function obstacle_selector(){
 //Remove old obstacles, display new ones
 async function obstacle_display(){
   $('img.obs').remove();
-  for(k=0;i<lvl_obstacles.length;k++){
+  for(k=0;k<lvl_obstacles.length;k++){
     let s="<img src='assets/hole.png' class='obs' "+
     "style='position: absolute;z-index: -1;margin-left:"+String(lvl_obstacles[k][1])+
     "px;margin-top: "+String(lvl_obstacles[k][0])+
