@@ -19,14 +19,14 @@ var no_of_rows=1;    //total rows of obstacles
 var no_of_cols=1;    //total columns of obstacles
 var obs_height=r/no_of_rows;
 var obs_width=c/no_of_cols;
+var offset_top=hive_sz;
+var offset_left=0;
 
 //----------------------------Generate,Display Obstacles and Check collision------------------------------------
 //generate obstacles list based on level
 async function obstacle_gen(){
   obstacles=[];
   lvl_obstacles=[];
-  var offset_top=hive_sz;
-  var offset_left=0;
 
   for(i=0;i<no_of_rows;i++){
     for(j=0;j<no_of_cols;j++){
@@ -146,7 +146,9 @@ if(lvl>no_of_cols*no_of_rows){
   const p4=await obstacle_gen();
 }
 const p5=await obstacle_selector();
+alert("sel_sucess")
 const p6=await obstacle_display();
+alert("disp_sucess");
 doing_something=0;
 }
 
