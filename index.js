@@ -137,6 +137,7 @@ if(lvl>no_of_cols*no_of_rows){
   no_of_rows+=1;
   obs_height=r/no_of_rows;
   obs_width=c/no_of_cols;
+  obstacle_gen();
 }
 obstacle_selector();
 obstacle_display();
