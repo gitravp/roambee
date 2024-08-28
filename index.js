@@ -67,7 +67,7 @@ async function obstacle_display(){
 }
 
 //check for collision of bee with an obstacle
-async function obstacle_collision(bee_tp,bee_lf){
+function obstacle_collision(bee_tp,bee_lf){
   detection_margin=0.4;
   for(i=0;i<lvl_obstacles.length;i++){
     if(bee_tp+img_sz>=(lvl_obstacles[i][0]+detection_margin*obs_height) && 
