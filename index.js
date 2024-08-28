@@ -45,7 +45,7 @@ async function obstacle_gen(){
 async function obstacle_selector(){
   while(lvl_obstacles.length<lvl)
   {
-  //let rand_no=obstacles.length==1?0:Math.floor(Math.random()*obstacles.length);
+  let rand_no=obstacles.length==1?0:Math.floor(Math.random()*obstacles.length);
   //let temp=obstacles[rand_no];
   //alert(rand_no+"-"+temp);
   //delete obstacles[rand_no];
