@@ -42,11 +42,13 @@ function obstacle_gen(){
 
 //Select an additional object each level up
 function obstacle_selector(){
+  for(i=lvl_obstacles.length;i<lvl;i++)
+  {
   rand_no=Math.floor(Math.random()*obstacles.length);
   temp=obstacles[rand_no];
   delete obstacles[rand_no];
   lvl_obstacles.push(temp);
-
+  }
 }
 
 //Remove old obstacles, display new ones
