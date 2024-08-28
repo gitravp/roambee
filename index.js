@@ -56,10 +56,10 @@ async function obstacle_selector(){
 //Remove old obstacles, display new ones
 async function obstacle_display(){
   $('img.obs').remove();
-  for(i=0;i<lvl_obstacles.length;i++){
-    s="<img src='assets/hole.png' class='obs' "+
-    "style='position: absolute;z-index: -1;margin-left:"+String(lvl_obstacles[i][1])+
-    "px;margin-top: "+String(lvl_obstacles[i][0])+
+  for(k=0;i<lvl_obstacles.length;k++){
+    let s="<img src='assets/hole.png' class='obs' "+
+    "style='position: absolute;z-index: -1;margin-left:"+String(lvl_obstacles[k][1])+
+    "px;margin-top: "+String(lvl_obstacles[k][0])+
     "px; height:"+String(obs_height)+
     "px;width:"+String(obs_width)+"px;'>";
     $('div#obstacle-arena').append(s); 
