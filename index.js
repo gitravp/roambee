@@ -49,7 +49,7 @@ async function obstacle_selector(){
   //let temp=obstacles[rand_no];
   //delete obstacles[rand_no];
   let temp=obstacles.splice(rand_no,1);
-  alert(rand_no+"-"+temp);
+  alert(rand_no+"-"+temp+temp.type);
   lvl_obstacles.push(temp);
   }
   //return(obstacle_display());
@@ -59,6 +59,7 @@ async function obstacle_selector(){
 async function obstacle_display(){
   $('img.obs').remove();
   for(k=0;k<lvl_obstacles.length;k++){
+    alert(String(lvl_obstacles[k][0])+","+String(lvl_obstacles[k][1]));
     let s="<img src='assets/hole.png' class='obs' "+
     "style='position: absolute;z-index: -1;margin-left:"+String(lvl_obstacles[k][1])+
     "px;margin-top: "+String(lvl_obstacles[k][0])+
@@ -148,7 +149,7 @@ if(lvl>no_of_cols*no_of_rows){
   const p4=await obstacle_gen();
 }
 const p5=await obstacle_selector();
-alert("sel_sucess"+lvl_obstacles);
+alert("sel_sucess"+lvl_obstacles+"\n"+obstacles);
 const p6=await obstacle_display();
 alert("disp_sucess");
 doing_something=0;
