@@ -95,7 +95,8 @@ function motion(event){
         game_over();
       }
 
-      if(parseInt($('#bee').css(tp))<hive_x && parseInt($('#bee').css(lft))<hive_y){level_up();}
+      else if(parseInt($('#bee').css(tp))<hive_x && parseInt($('#bee').css(lft))<hive_y){level_up();}
+      else{}
     }
   }
 
