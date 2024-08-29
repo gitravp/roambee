@@ -25,6 +25,9 @@ var offset_top=hive_sz;    //offset to add to vertical position of obstacles
 var offset_left=0;    //offset to add to horizontal position of bee
 var stagger_percent=0.25;    //staggering percentage of obstacles in alternate rows
 
+var audi_lost='assets/audi_lost.mp3';    //audio file for game over
+var audi_win='assets/audi_win.mp3';    //audio file for level complete
+
 //------------------------------- UI improvement functions-----------------------------------------------------
 
 function flasher(txt)
@@ -121,7 +124,14 @@ function motion(event)
       beex()<=0 ||
       beex()>=(w-img_sz) || 
       obstacle_collision(beey(),beex()))    //check if be has hit top/bottom/right/left edge or collided with obstacle to initiate game over
-        {flasher('#bee');return(game_over());}
+        {
+          if('vibrate'in navigator)
+            {
+              navigator.vibrate(100);
+            }
+          flasher('#bee');
+          return(game_over());
+        }
       else
         {}    //else proceed as usual
     }
@@ -132,6 +142,7 @@ function motion(event)
 //game over sequence
 function game_over()
 {
+  new Audio(audi_lost).play();
   $('#lvl-h').text('game');$('#lvl-b').text('over');    //set text to game over
   strt=0;    //game started variable set to 0
   return(1);    //return
@@ -162,6 +173,7 @@ async function restart()
 async function level_up()
 {
   doing_something=1;    //set doing_something to 1 till all tasks are completed
+  new Audio(audi_win).play();
   $('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
   $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
   $('#bee').fadeIn(500);    //fade in bee
