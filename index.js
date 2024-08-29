@@ -32,15 +32,23 @@ function flasher(txt)
   $(txt).fadeOut(40).fadeIn(40).fadeOut(40).fadeIn(40).fadeOut(40).fadeIn(40);
 }
 
-function enter_hive()
+async function delayer(n)
+{
+  setTimeout(function(){},n);
+}
+
+async function enter_hive()
 {
   let frames=10;
   let dx=(beex()-hole_x)/frames;
   let dy=(beey()-hole_y)/frames;
-  
+  $('#bee').css(height,'20px');
+  $('#bee').css(height,'20px');
   for(i=0;i<frames;i++){
     $('#bee').css(tp,String(beey+dy)+'px');
+    await(delayer(20));
     $('#bee').css(lft,String(beex+dx)+'px');
+    await(delayer(20));
   }
   $('#bee').fadeOut(500);
 }
