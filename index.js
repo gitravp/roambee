@@ -37,9 +37,9 @@ async function enter_hive()
   let frames=10;
   let dx=(beex()-hole_x)/frames;
   let dy=(beey()-hole_y)/frames;
-  $('#bee').attr('src','images/reverse_bee.png');
-  $('#bee').fadeOut(500);
-  $('#bee').attr('src','images/transparent_bee.png');
+  $('#bee').attr('src','assets/reverse_bee.png');
+  $('#bee').fadeOut(1000);
+  $('#bee').attr('src','assets/transparent_bee.png');
 }
 
 //--------------------------Generate/Pick/Display Obstacles and Check collision---------------------------------
