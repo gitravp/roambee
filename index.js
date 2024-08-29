@@ -7,6 +7,8 @@ var tp='top';    //css attribute for vertical offsetting of bee positioning
 var lft='left';    //css attribute for horizontal offsetting of bee positioning
 var hive_x=35;    //hive entering horizontal threshold for bee
 var hive_y=35;    //hive entering vertical threshold for bee
+var hole_x=37;
+var hole_y=70;
 var lvl=1;    //initialise level
 var strt=0;    //game started or not variable, 0=> not started,1=>started
 var doing_something=0;    //variable to temporarily halt movement registration of bee when performing other operations
@@ -28,6 +30,19 @@ var stagger_percent=0.25;    //staggering percentage of obstacles in alternate r
 function flasher(txt)
 {
   $(txt).fadeOut(40).fadeIn(40).fadeOut(40).fadeIn(40).fadeOut(40).fadeIn(40);
+}
+
+function enter_hive()
+{
+  let frames=10;
+  let dx=(beex()-hole_x)/frames;
+  let dy=(beey()-hole_y)/frames;
+  
+  for(i=0;i<frames;i++){
+    $('#bee').css(tp,String(beey+dy)+'px');
+    $('#bee').css(lft,String(beex+dx)+'px');
+  }
+  $('#bee').fadeOut(500);
 }
 
 //--------------------------Generate/Pick/Display Obstacles and Check collision---------------------------------
@@ -126,7 +141,6 @@ function motion(event)
     }
 }
 
-
 //------------------------------------------Game over and restart----------------------------------------------
 
 //game over sequence
@@ -143,6 +157,7 @@ async function restart()
   doing_something=1;    //set doing_something to 1 till all tasks are completed
   $('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
   $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
+  $('#bee').fadeIn(500);    //fade in bee
   lvl=1;    //initialise level to 1
   $('#lvl-h').text("LEVEL");    //set text to show current level(1)
   $('#lvl-b').text(String(lvl));
@@ -162,8 +177,10 @@ async function restart()
 async function level_up()
 {
   doing_something=1;    //set doing_something to 1 till all tasks are completed
+  enter_hive();
   $('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
   $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
+  $('#bee').fadeIn(500);    //fade in bee
   lvl+=1;    //increment level by 1
   $('#lvl-b').text(String(lvl));    //set text to show current level
   //if regular level up, just select obstacles from generated list and display
@@ -194,3 +211,4 @@ else{
   }
 
 //-------------------------------------------------------------------------------------------------------------
+
