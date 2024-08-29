@@ -93,30 +93,39 @@ function obstacle_collision(bee_tp,bee_lf)
 }
 
 //----------------------------Bee motion based on Gyroscope-----------------------------------------------------
+function beex(){
+  return(parseInt($('#bee').css(lft)));
+}
+function beey(){
+  return(parseInt($('#bee').css(tp)));
+}
+
 
 //move bee along x and y axis based on gyro inputs
 function motion(event)
 {
+
   if(strt==1 && doing_something==0)    //move bee only of game has started and no ongoing computation
     {
-      if(parseInt($('#bee').css(tp))>0 && parseInt($('#bee').css(tp))<(h-img_sz))    //move bee up/down based on beta gyro angle if bee hasnt hit top/bottom yet
-        {$('#bee').css(tp,String(parseInt($('#bee').css(tp))+event.beta/10)+'px')}
+      if(beey()>0 && beey()<(h-img_sz))    //move bee up/down based on beta gyro angle if bee hasnt hit top/bottom yet
+        {$('#bee').css(tp,String(beey()+event.beta/10)+'px')}
 
-      if(parseInt($('#bee').css(lft))>0 && parseInt($('#bee').css(lft))<(w-img_sz))    //move bee left/right based on gamma gyro angle if bee hasnt hit right edge/left edge yet
-        {$('#bee').css(lft,String(parseInt($('#bee').css(lft))+event.gamma/10)+'px')}
+      if(beex()>0 && beex()<(w-img_sz))    //move bee left/right based on gamma gyro angle if bee hasnt hit right edge/left edge yet
+        {$('#bee').css(lft,String(beex()+event.gamma/10)+'px')}
 
-      if(parseInt($('#bee').css(tp))<hive_x && parseInt($('#bee').css(lft))<hive_y)    //check if bee has reached hive to initiate level up
+      if(beex()<hive_x && beey<hive_y)    //check if bee has reached hive to initiate level up
         {return(level_up());}
-      else if(parseInt($('#bee').css(tp))<=0 ||
-      parseInt($('#bee').css(tp))>=(h-img_sz)||
-      parseInt($('#bee').css(lft))<=0 ||
-      parseInt($('#bee').css(lft))>=(w-img_sz) || 
-      obstacle_collision(parseInt($('#bee').css(tp)),parseInt($('#bee').css(lft))))    //check if be has hit top/bottom/right/left edge or collided with obstacle to initiate game over
+      else if(beey()<=0 ||
+      beey()>=(h-img_sz)||
+      beex()<=0 ||
+      beex()>=(w-img_sz) || 
+      obstacle_collision(beey(),beex()))    //check if be has hit top/bottom/right/left edge or collided with obstacle to initiate game over
         {flasher('#bee');return(game_over());}
       else
         {}    //else proceed as usual
     }
 }
+
 
 //------------------------------------------Game over and restart----------------------------------------------
 
