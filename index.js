@@ -32,16 +32,6 @@ function flasher(txt)
   $(txt).fadeOut(40).fadeIn(40).fadeOut(40).fadeIn(40).fadeOut(40).fadeIn(40);
 }
 
-async function enter_hive()
-{
-  let frames=10;
-  let dx=(beex()-hole_x)/frames;
-  let dy=(beey()-hole_y)/frames;
-  $('#bee').attr('src','assets/reverse_bee.png');
-  $('#bee').fadeOut(1000);
-  $('#bee').attr('src','assets/transparent_bee.png');
-}
-
 //--------------------------Generate/Pick/Display Obstacles and Check collision---------------------------------
 
 //generate obstacles list based on complexity of level
@@ -112,7 +102,6 @@ function beey(){
   return(parseInt($('#bee').css(tp)));
 }
 
-
 //move bee along x and y axis based on gyro inputs
 function motion(event)
 {
@@ -154,7 +143,6 @@ async function restart()
   doing_something=1;    //set doing_something to 1 till all tasks are completed
   $('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
   $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
-  $('#bee').fadeIn(500);    //fade in bee
   lvl=1;    //initialise level to 1
   $('#lvl-h').text("LEVEL");    //set text to show current level(1)
   $('#lvl-b').text(String(lvl));
@@ -174,7 +162,6 @@ async function restart()
 async function level_up()
 {
   doing_something=1;    //set doing_something to 1 till all tasks are completed
-  const p7=await enter_hive();
   $('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
   $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
   $('#bee').fadeIn(500);    //fade in bee
@@ -208,4 +195,3 @@ else{
   }
 
 //-------------------------------------------------------------------------------------------------------------
-
