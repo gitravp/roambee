@@ -113,7 +113,7 @@ function motion(event)
       if(beex()>0 && beex()<(w-img_sz))    //move bee left/right based on gamma gyro angle if bee hasnt hit right edge/left edge yet
         {$('#bee').css(lft,String(beex()+event.gamma/10)+'px')}
 
-      if(beex()<hive_x && beey<hive_y)    //check if bee has reached hive to initiate level up
+      if(beex()<hive_x && beey()<hive_y)    //check if bee has reached hive to initiate level up
         {return(level_up());}
       else if(beey()<=0 ||
       beey()>=(h-img_sz)||
