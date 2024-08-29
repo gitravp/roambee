@@ -185,7 +185,7 @@ async function restart()
 async function level_up()
 {
   doing_something=1;    //set doing_something to 1 till all tasks are completed
-  enter_hive();
+  await enter_hive();
   $('#bee').css(tp,String(parseInt(h-60))+'px')    //initialise bee position Y axis
   $('#bee').css(lft,String(parseInt(w-60))+'px')    //initialise bee position X axis
   $('#bee').fadeIn(500);    //fade in bee
