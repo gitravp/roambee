@@ -27,12 +27,12 @@ var stagger_percent=0.25;    //staggering percentage of obstacles in alternate r
 
 function flasher(txt)
 {
-  $(txt).fadeOut(40).fadeIn(40).fadeOut(40).fadeIn(40);
+  $(txt).fadeOut(40).fadeIn(40).fadeOut(40).fadeIn(40).fadeOut(40).fadeIn(40);
 }
 
 function appear(txt)
 {
-  $(txt).fadeIn(100);
+  $(txt).fadeIn(300);
 }
 
 //--------------------------Generate/Pick/Display Obstacles and Check collision---------------------------------
