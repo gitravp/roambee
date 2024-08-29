@@ -23,6 +23,18 @@ var offset_top=hive_sz;    //offset to add to vertical position of obstacles
 var offset_left=0;    //offset to add to horizontal position of bee
 var stagger_percent=0.25;    //staggering percentage of obstacles in alternate rows
 
+//------------------------------- UI improvement functions-----------------------------------------------------
+
+function flasher(txt)
+{
+  $(txt).fadeOut(40).fadeIn(40).fadeOut(40).fadeIn(40);
+}
+
+function appear(txt)
+{
+  $(txt).fadeIn(100);
+}
+
 //--------------------------Generate/Pick/Display Obstacles and Check collision---------------------------------
 
 //generate obstacles list based on complexity of level
@@ -68,6 +80,7 @@ async function obstacle_display()
       "px;width:"+String(obs_width)+"px;'>";    //string of html code to add obstacle
       $('div#obstacle-arena').append(s);    //add the obstacle image tag to our game div tag
     }
+    appear('img.obs');    //make the obstacles appear into visibility
 }
 
 //check for collision of bee with an obstacle
@@ -80,7 +93,7 @@ function obstacle_collision(bee_tp,bee_lf)
         bee_tp<=(lvl_obstacles[i][0][0]+obs_height-detection_margin*obs_height )&& 
         bee_lf+img_sz>=(lvl_obstacles[i][0][1]+detection_margin*obs_width )&& 
         bee_lf<=(lvl_obstacles[i][0][1]+obs_width-detection_margin*obs_width))
-          {return true;}    //return true if in collision range
+          {flasher('#bee');return true;}    //return true if in collision range
     }
   return false;    //assume no collision by default
 }
