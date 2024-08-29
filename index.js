@@ -30,11 +30,6 @@ function flasher(txt)
   $(txt).fadeOut(40).fadeIn(40).fadeOut(40).fadeIn(40).fadeOut(40).fadeIn(40);
 }
 
-function appear(txt)
-{
-  $(txt).fadeIn(1000);
-}
-
 //--------------------------Generate/Pick/Display Obstacles and Check collision---------------------------------
 
 //generate obstacles list based on complexity of level
@@ -80,7 +75,6 @@ async function obstacle_display()
       "px;width:"+String(obs_width)+"px;'>";    //string of html code to add obstacle
       $('div#obstacle-arena').append(s);    //add the obstacle image tag to our game div tag
     }
-    appear('img.obs');    //make the obstacles appear into visibility
 }
 
 //check for collision of bee with an obstacle
@@ -93,7 +87,7 @@ function obstacle_collision(bee_tp,bee_lf)
         bee_tp<=(lvl_obstacles[i][0][0]+obs_height-detection_margin*obs_height )&& 
         bee_lf+img_sz>=(lvl_obstacles[i][0][1]+detection_margin*obs_width )&& 
         bee_lf<=(lvl_obstacles[i][0][1]+obs_width-detection_margin*obs_width))
-          {flasher('#bee');return true;}    //return true if in collision range
+          {return true;}    //return true if in collision range
     }
   return false;    //assume no collision by default
 }
@@ -118,7 +112,7 @@ function motion(event)
       parseInt($('#bee').css(lft))<=0 ||
       parseInt($('#bee').css(lft))>=(w-img_sz) || 
       obstacle_collision(parseInt($('#bee').css(tp)),parseInt($('#bee').css(lft))))    //check if be has hit top/bottom/right/left edge or collided with obstacle to initiate game over
-        {return(game_over());}
+        {flasher('#bee');return(game_over());}
       else
         {}    //else proceed as usual
     }
