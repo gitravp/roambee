@@ -32,7 +32,7 @@ function flasher(txt)
 
 function appear(txt)
 {
-  $(txt).fadeIn(300);
+  $(txt).fadeIn(1000);
 }
 
 //--------------------------Generate/Pick/Display Obstacles and Check collision---------------------------------
